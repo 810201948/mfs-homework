@@ -1,0 +1,29 @@
+<form method="POST">
+    <div class="email">
+        <label>邮箱:</label>
+        <input type="email" name="email" >
+    </div>
+    <div class="num">
+        <label>数字:</label>
+        <input type="number" name="number" min="0" max="100" step="2">
+    </div>
+    <div class="select">
+        <label>城市:</label>
+        <input list="city">
+        <datalist id="city">
+            <option value="北京" >
+            <option value="广州" >
+            <option value="上海" >
+            <option value="深圳" >
+        </datalist>
+        
+
+    </div>
+    <div class="submit">
+        <button>提交</button>
+        
+        <input type="reset" />
+        
+    </div>
+
+</form>
