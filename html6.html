@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+ <style type="text/css">
+   *{
+     margin: 0;
+     padding: 0;
+   }
+   ul{
+     display: none;
+     list-style: none;
+   }
+   .item{
+     position: relative;
+   }
+   .item:hover{
+     color: blue;
+   }
+   .item:hover ul{
+     display: block;
+     position: absolute;
+     top: 16px;
+     left: 0;
+   }
+ </style>
+</head>
+
+<body>
+    <span class="item">导航1
+      <ul>
+        <li>11</li>
+        <li>12</li>
+        <li>13</li>
+      </ul>
+    </span>
+    <span class="item">导航2
+      <ul>
+        <li>21</li>
+        <li>22</li>
+        <li>23</li>
+      </ul>
+    </span>
+    
+</body>
+
+</html>
