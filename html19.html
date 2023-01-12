@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>loading</title>
+    <style type="text/css">
+        @keyframes move{
+            0%{
+                transform: translate(0,0);
+            }
+            25%{
+                transform: translate(-64px,0);
+            }
+            50%{
+                transform: translate(32px,0);
+            }
+            100%{
+                transform: translate(0,0);
+            }
+        }
+        @keyframes rotate{
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+       
+        .load{
+            display: block;
+            width: 64px;
+            height: 64px;
+            margin-left: -32px;
+            margin-top: -32px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform-origin: 16px 16px; 
+            animation: rotate 5s linear infinite;
+            
+        }
+        .group{
+            width: 64px;
+            height: 24px;
+            position: absolute;
+            top: 4px;
+            left: 0;
+            transform-origin: top left;
+        }
+        .green{
+
+            background-color: #00a691;
+            
+        }
+        .group:nth-child(1){
+            transform: rotate(0deg);
+        }
+        .red{
+            background-color: lightcoral;
+            
+        }
+        .group:nth-child(2){
+            transform: rotate(90deg);
+        }
+        .yellow{
+            background-color: khaki;
+            
+        }
+        .group:nth-child(3){
+            transform: rotate(180deg);
+        }
+        .black{
+            background-color: lightslategray;
+            
+        }
+        .group:nth-child(4){
+            transform: rotate(270deg);
+        }
+
+        .green,.red,.yellow,.black{
+            animation: move 2.5s linear infinite;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+        }
+        .one{
+            width: 8px;
+            height: 8px;
+            top: 50%;
+            left: 50%;
+            margin-top: -4px;
+            margin-left: -4px;
+            border-radius: 4px;
+            animation-delay: -0.3s;
+        }
+        .two{
+            width: 16px;
+            height: 16px;
+            top: 50%;
+            left: 50%;
+            margin-top: -8px;
+            margin-left: -8px;
+            border-radius: 8px;
+            animation-delay: -0.6s;
+        }
+        .three{
+            width: 24px;
+            height: 24px;
+            top: 50%;
+            left: 50%;
+            margin-top: -12px;
+            margin-left: -12px;
+            border-radius: 12px;
+            animation-delay: -0.9s;
+        }
+        
+        
+
+    </style>
+</head>
+<body>
+<div ">
+    <div class="load">
+        <div class="group">
+            <div class="green one"></div>
+            <div class="green two"></div>
+            <div class="green three"></div>
+        </div>
+        <div class="group">
+            <div class="red one"></div>
+            <div class="red two"></div>
+            <div class="red three"></div>
+        </div>
+        <div class="group">
+            <div class="yellow one"></div>
+            <div class="yellow two"></div>
+            <div class="yellow three"></div>
+        </div>
+        <div class="group">
+            <div class="black one"></div>
+            <div class="black two"></div>
+            <div class="black three"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
