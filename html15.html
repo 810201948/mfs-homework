@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>导航栏</title>
+<meta charset="utf-8">
+    <style>
+        @media only screen and (max-width: 768px) {
+            
+            .a,.dropdown {
+                
+                width: 100%;
+            }
+            li a{
+                
+                width: 100%;
+                
+            }
+            .dropdown-content{
+                display: block;
+                width: 100%;
+            }
+            .dropdown-content a,.dropdown-content li
+            {
+                /* display: block; */
+                width: 100%;
+            }
+            
+        }
+        ul{
+            list-style-type:none;
+            margin:0;
+            padding:0;
+            overflow:hidden;
+            background-color:rgb(235, 232, 232);
+        }
+        
+        li{
+            float:left;
+        }
+        
+        li a, .dropbtn
+        {
+            display:inline-block;
+            color:rgb(80, 79, 79);
+            
+            padding:14px 16px;
+            text-decoration:none;
+        }
+        
+        li a:hover
+        {
+            
+            color: black;
+        }
+        .dropdown:hover{
+            background-color:rgb(199, 198, 198);
+        }
+        
+        .dropdown
+        {
+            display:inline-block;
+        }
+        
+        .dropdown-content
+        {
+            display:none;
+            position:absolute;
+            background-color:#f9f9f9;
+            min-width:160px;
+            box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);
+            
+        }
+        
+        .dropdown-content a,.dropdown-content li
+        {
+            color:rgb(65, 64, 64);
+            padding:12px 16px;
+            text-decoration:none;
+            display:block;
+            width: 80%;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+        
+        .dropdown:hover .dropdown-content
+        {
+            display:block;
+        }
+        /* 分离线 */
+        .divider{
+            border-bottom:1px solid gainsboro;
+            /* position: absolute;
+            bottom: 5px; */
+            margin-top: -25px;
+        }
+        .active{
+            background-color: rgb(199, 198, 198);
+        }
+    
+    </style>
+</head>
+<body>
+
+    <ul >
+    <li class="a"><a href="#home">菜鸟教程</a></li>
+    <li class="a"><a class="active" href="#news">iOS</a></li>
+    <li class="a"><a href="#news">svn</a></li>
+    <div class="dropdown">
+        <a  href="#" class="dropbtn">Java &#x25BC</a>
+        <div class="dropdown-content">
+            <a href="#">链接 1</a>
+            <a href="#">链接 2</a>
+            <a href="#">链接 3</a>
+            <li class="divider"></li>
+            <a href="#">分离的链接</a>
+            <li class="divider "></li>
+            <a href="#">另一个分离的链接</a>
+        </div>
+    </div>
+    </ul>
+
+
+</body>
+</html>
