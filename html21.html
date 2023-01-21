@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas</title>
+</head>
+<body>
+    <canvas id="test" width="200" height="200"></canvas>
+    <script>
+        var ele=document.getElementById("test")
+        var ctx=ele.getContext("2d")
+   
+        ctx.translate(100,100)
+        ctx.scale(1,-1)
+
+        function run(){
+            ctx.clearRect(-100,-100,200,200)
+            ctx.strokeStyle="#0022cc"
+            ctx.lineWidth=5
+            ctx.beginPath()
+            ctx.arc(0,0,80,0,Math.PI*2)
+            ctx.closePath()
+            ctx.stroke()
+
+            ctx.beginPath()
+            ctx.strokeStyle="#000000"
+            ctx.lineWidth=3
+            for(var i=0;i<12;i++){
+                var t=Math.PI/6*i
+                var x=70*Math.sin(t)
+                var y=70*Math.cos(t)
+                ctx.moveTo(x,y)
+                ctx.lineTo(0.8*x,0.8*y)
+            }
+            ctx.stroke()
+            ctx.closePath()
+
+            ctx.beginPath()
+            ctx.strokeStyle="#000000"
+            ctx.lineWidth=2
+            for(var i=0;i<60;i++){
+                var t=Math.PI/30*i
+                var x=70*Math.sin(t)
+                var y=70*Math.cos(t)
+                ctx.moveTo(x,y)
+                ctx.lineTo(0.9*x,0.9*y)
+            }
+            ctx.stroke()
+            ctx.closePath()
+            var nowTime=new Date()
+            var h=nowTime.getHours()
+            var m=nowTime.getMinutes()
+            var s=nowTime.getSeconds()
+            drawH(h);
+            drawM(m);
+            drawS(s);
+            ctx.restore()
+        }
+        run()
+        
+        setInterval(
+            run,1000
+        )
+
+        function drawH(h){
+            ctx.save()
+            ctx.beginPath()
+            
+            ctx.strokeStyle="5"
+            ctx.lineWidth=5
+            var t=h*Math.PI/6
+            ctx.moveTo(-10*Math.sin(t),-10*Math.cos(t))
+            ctx.lineTo(30*Math.sin(t),30*Math.cos(t))
+            ctx.stroke()
+            ctx.closePath()
+            ctx.restore()
+
+            
+        }
+        function drawM(m){
+            ctx.save()
+            ctx.beginPath()
+            
+            ctx.lineWidth=3
+            ctx.strokeStyle="5"
+            var t=m*Math.PI/30
+            ctx.moveTo(-10*Math.sin(t),-10*Math.cos(t))
+            ctx.lineTo(35*Math.sin(t),35*Math.cos(t))
+            ctx.stroke()
+            ctx.closePath()
+            ctx.restore()
+
+            
+        }
+        function drawS(s){
+            ctx.save()
+            ctx.beginPath()
+
+            ctx.lineWidth=2
+            ctx.strokeStyle="#cc0000"
+            var t=s*Math.PI/30
+            ctx.moveTo(-10*Math.sin(t),-10*Math.cos(t))
+            ctx.lineTo(46*Math.sin(t),46*Math.cos(t))
+            
+            ctx.stroke()
+            ctx.closePath()
+
+            ctx.beginPath()
+            ctx.lineWidth=2
+            ctx.arc(0,0,5,0,Math.PI*2)
+            ctx.stroke()
+            ctx.closePath()
+
+            ctx.beginPath()
+            ctx.lineWidth=2
+            ctx.arc(50*Math.sin(t),50*Math.cos(t),5,0,Math.PI*2)
+            ctx.stroke()
+            ctx.closePath()
+            ctx.restore()
+
+        }
+        
+
+
+        
+        
+
+        
+
+    </script>
+</body>
+</html>
