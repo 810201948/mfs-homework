@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="award">点击“开始“按钮，开始抽奖！</div>
+    <div class="action">
+        <button id="start">开 始</button>
+        <button id="stop">停 止</button>
+    </div>
+    <script>
+        var list=['特等奖','一等奖','二等奖','三等奖','鼓励奖']
+        var oAward=document.getElementById("award")
+        var oStart=document.getElementById("start")
+        var oStop=document.getElementById("stop")
+        var timer,m
+        var obj
+        oStart.onclick=function(){
+            timer=setInterval(function(){
+                m=parseInt(Math.random()*100);
+                if(m==0){
+                    obj=list[0];
+                }
+                else if(m>0&&m<=10){
+                    obj=list[1];
+                }
+                else if(m>10&&m<=40){
+                    obj=list[2];
+                }
+                else if(m>40&&m<=80){
+                    obj=list[3];
+                }
+                else{
+                    obj=list[4];
+                }
+                oAward.innerHTML=obj
+            },100)
+        }
+        oStop.onclick=function(){
+            clearInterval(timer);
+            if(m==0){
+                alert('恭喜抽中'+list[0]);
+            }
+            else if(m>0&&m<=10){
+                alert('恭喜抽中'+list[1]);
+            }
+            else if(m>10&&m<=40){
+                alert('恭喜抽中'+list[2]);
+            }
+            else if(m>40&&m<=80){
+                alert('恭喜抽中'+list[3]);
+            }
+            else{
+                alert('恭喜抽中'+list[4]);
+            }
+        }
+    </script>
+</body>
+</html>
