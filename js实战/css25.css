@@ -1,0 +1,93 @@
+body{
+    margin: 0;
+}
+.banner{
+    background: url(https://work.mafengshe.com/static/imgs/banner.jpg);
+    height: 270px;
+}
+.banner p{
+    color: white;
+    font-size: 46px;
+    font-weight: 700;
+    text-align: center;
+    /* line-height: 270px; */
+    margin-top: 0;
+    padding-top: 50px;
+}
+.list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.item{
+    /* width: 22%; */
+    width: 25%;
+    height: 148px;
+    background: #4ce19c;
+    margin: 20px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+.item .no{
+    background: #20b6d2;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    line-height: 60px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    position:absolute;
+    top: -10px;
+    left: -10px;
+}
+.item .title{
+    background: #00474c;
+    position: absolute;
+    bottom: 0;
+    height: 45px;
+    right: 0;
+    left: 0;
+    text-align: center;
+    line-height: 45px;
+    color: ghostwhite;
+    font-size: 14px;
+}
+.item .info{
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    color: ghostwhite;
+    font-size: 16px;
+}
+.item .info span{
+    margin-left: 5px;
+    margin-top: 5px;
+}
+.item .icon-xiaolian{
+    font-size: 50px;
+    position: absolute;
+    top: -10px;
+    bottom: 0;
+    left: 5px;
+    right: 0;
+    margin: auto;
+    height: 60px;
+    width: 60px;
+    color: rgb(77, 74, 74);
+}
+.pager{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 80px
+}
+.pager a{
+    margin: 10px;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css25.css" >
+    <link rel="stylesheet" href="iconfont/iconfont.css" >
+</head>
+<body>
+    <div class="banner">
+        <p>一分耕耘 一分收获</p>
+        <p style="font-size:28px;margin-top: 20px;">NO PAINS NO GAINS</p>
+    </div>
+    <div id="list" class="list">
+        <!-- <div class="item">
+            <div class="no">1</div>
+            <div class="title">基本工具安装和使用</div>
+            <div class="info">
+                <span class="icon iconfont icon-yanjing"></span>100
+                <span class="icon iconfont icon-xiaoxi"></span>40
+            </div>
+            <div class="icon iconfont icon-xiaolian"></div>
+        </div> -->
+        
+        
+    </div>
+    <div class="pager">
+        <!-- <a href="#">1</a>
+        <a href="#">2</a> -->
+
+    </div>
+
+    <script>
+        function createItem(no,title,clickTimes,reply){
+            var dom=document.createElement("div");
+            dom.setAttribute("class","item");
+            var html='<div class="no">'+ no+'</div>'+
+            '<div class="title">'+ title +'</div>'+
+            '<div class="info"><span class="icon iconfont icon-yanjing"></span>'+clickTimes+
+                '<span class="icon iconfont icon-xiaoxi"></span>'+reply+
+            '</div><div class="icon iconfont icon-xiaolian"></div>'
+
+            dom.innerHTML=html;
+            return dom;    
+        }
+        // var oList=document.getElementById("list");
+        // oList.appendChild(createItem(2,"HTML结构",598,54));
+        // oList.appendChild(createItem(3,"HTML语法",598,54));
+        // oList.appendChild(createItem(4,"HTML表单1",598,54));
+        // oList.appendChild(createItem(5,"HTML表单2",598,54));
+        // oList.appendChild(createItem(6,"iframe",598,54));
+        // oList.appendChild(createItem(7,"外部资源引入",598,54));
+        // oList.appendChild(createItem(8,"标签语义化",598,54));
+        // oList.appendChild(createItem(9,"url",598,54));
+        // oList.appendChild(createItem(10,"HTML5新特性",598,54));
+        // oList.appendChild(createItem(11,"css语法",598,54));
+        // oList.appendChild(createItem(12,"选择器",598,54));
+
+        //将数据push到data数组
+        var data = [];
+        for (let i = 1; i < 101; i++) {
+            data.push({ no: i, title: '标题' + i, clickTimes: 100 * i, reply: 10 * i })
+        }
+        
+        //根据data元素个数动态生成页码数 分页
+        var pager = document.getElementsByClassName('pager')[0]
+        for (let i = 0; i < Math.ceil(data.length / 12); i++) {
+            var a = document.createElement('a')
+            a.innerText = i + 1
+            pager.appendChild(a)
+        }
+
+        
+
+
+        function getData(page) {
+            return data.slice(page * 12, page * 12 + 12)
+        }
+
+        var oList=document.getElementById("list");
+        function fillDom(page){
+            //清除list子元素
+            while (oList.hasChildNodes()) {
+                oList.removeChild(oList.lastChild)
+            }
+
+            var data = getData(page);
+            var doms=data.map(function(i){
+                return createItem(i.no,i.title,i.clickTimes,i.reply)
+            })
+            doms.forEach((i) => {
+                oList.appendChild(i)
+            })
+        }
+
+        fillDom(0);
+
+        var pages=document.querySelectorAll('.pager a');
+        for(let i=0;i<pages.length;i++){
+            pages[i].addEventListener("click",(event) => {
+                for (let j = 0; j < pages.length; j++) {
+                    pages[j].style.backgroundColor = 'white'
+                    pages[j].style.color = 'black'
+                }
+                event.target.style.backgroundColor = 'rgb(253, 110, 110)'
+                event.target.style.color = 'white'
+                
+                fillDom(i)
+            })
+        }
+
+    </script>
+</body>
+</html>

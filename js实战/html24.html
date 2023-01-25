@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    
+    </head>
+    <body>
+        <form id="signin" action="#" target="_blank" onsubmit="return onSignupFormSubmit()">
+            <p id="sigin-error" style="color:red"></p>
+            <p>
+                用户名: <input type="text" id="username" name="username">
+            </p>
+            <p>
+                口令: <input type="password" id="password" name="password">
+            </p>
+            <p>
+                重复口令: <input type="password" id="password2">
+            </p>
+            <p>
+                <button type="submit">提交</button> <button type="reset" id="reset">重置</button>
+            </p>
+        </form>
+      
+        <script>
+            
+            function onSignupFormSubmit(){
+                var oError=document.getElementById("sigin-error")
+                var oUsername=document.getElementById("username")
+                var oPassword=document.getElementById("password")
+                var oPassword2=document.getElementById("password2")
+                
+                var username=oUsername.value
+                var password=oPassword.value
+                var password2=oPassword2.value
+
+                var Reg = /^[a-zA-Z][a-zA-Z0-9_]*$/;
+                var Reg2 = /([a-zA-Z0-9_@#$%^&*~!?])$/;
+
+
+                if(username.length<6||username.length>16||!(Reg.test(username))){
+                    oError.innerText="用户名：以字母开头，6-16个英文字符，数字或下划线";
+                    return false;
+                }
+                if(password.length<8||password.length>20||!(Reg2.test(password))){
+                    oError.innerText="口令：8-20个字符，英文字符，数字，下划线或特殊符号";
+                    return false;
+                }
+                if(password!=password2){
+                    oError.innerText="重复口令：必须和口令一致";
+                    return false;
+                }
+                return true;
+
+        
+            }
+            var oReset=document.getElementById("reset");
+            oReset.onclick=reset;
+            function reset(){
+                var oError=document.getElementById("sigin-error")
+                oError.innerText=" "
+            }
+
+        </script>
+    </body>
+</html>
