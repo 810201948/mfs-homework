@@ -1,0 +1,33 @@
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>        
+    </head>
+    <body>
+        
+    </body>
+    <script  type="text/javascript">
+        
+        
+
+       
+        var fun1 = function(data){
+
+            alert('查询id ' + data.id + ' 对应名字为:  ' + data.name );
+        };
+        
+        // 提供jsonp服务的url地址
+        var url = "http://www.a.com:3000/data.aspx?id=001&callback=fun1";
+        
+        
+        // 创建script标签，设置其属性
+        var script = document.createElement('script');
+        script.setAttribute('src', url);
+
+        document.getElementsByTagName('head')[0].appendChild(script); 
+    
+    </script>
+    
+
+</html>
