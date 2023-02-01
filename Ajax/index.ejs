@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div>
+    <div id="list" class="list"></div>
+  </div>
+    <script>
+
+      function renderDom(data){
+        function createItem(no,title,clickTimes,replypage){
+            var dom=document.createElement("div");
+            dom.setAttribute("class","item");
+            var html=`<div>序号：${no}</div>
+            <div>标题：${title}</div>
+            <div>点击量：${clickTimes}</div>
+            <div>回复：${replypage}</div>`
+
+            dom.innerHTML=html;
+            return dom;    
+        }
+      
+      function getData(page) {
+            return data.slice(page * 12, page * 12 + 12)
+        }
+
+        var oList=document.getElementById("list");
+        // oList.appendChild(dom)
+        function fillDom(page){
+            //清除list子元素
+            while (oList.hasChildNodes()) {
+                oList.removeChild(oList.lastChild)
+            }
+
+            var data = getData(page);
+            var doms=data.map(function(i){
+                return createItem(i.no,i.title,i.clickTimes,i.replypage)
+            })
+            doms.forEach((i) => {
+                oList.appendChild(i)
+            })
+        }
+
+        fillDom(0);
+    }
+
+
+
+        function getItem(callback){
+            var xhr=new XMLHttpRequest()
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText)
+                    callback(JSON.parse(xhr.responseText))
+                }
+            }
+            xhr.open('get', '/json', true)
+            xhr.send()
+        }
+        getItem(renderDom)
+    </script>
+</body>
+</html>
