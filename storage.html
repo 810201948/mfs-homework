@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(250, 243, 233);
+            
+        }
+        #goods{
+            background-color: rgb(250, 230, 203);
+            width: 20%;
+        }
+        #selected-goods{
+            background-color: rgba(243, 121, 65,0.3);
+            width: 20%;
+        }
+        .g{
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>---------商品：---------</div>
+    <div id="goods">
+        <div>
+            <div>
+                苹果
+            </div>
+        </div>
+        
+    </div>
+    <div>--------购物车：-------</div>
+    <div id="selected-goods">
+        <div>
+            <div>
+                苹果
+            </div>
+            <div>
+                10
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        var goods=[
+            {
+                id:1,
+                name:"牛奶"
+            },
+            {
+                id:2,
+                name:"橙汁"
+            },
+            {
+                id:3,
+                name:"可乐"
+            },
+            {
+                id:4,
+                name:"矿泉水"
+            }
+
+
+        ]
+
+        var selectedGoods=[
+            {
+                id:1,
+                name:"牛奶",
+                amount:1
+            },
+            {
+                id:2,
+                name:"橙汁",
+                amount:2
+            },
+            {
+                id:3,
+                name:"可乐",
+                amount:2
+            }
+
+
+        ]
+
+        var goodsBox=document.getElementById("goods")
+        var selectedGoodsBox=document.getElementById("selected-goods")
+
+
+        
+
+        //添加到购物车
+        goodsBox.addEventListener("click",function(event){
+            let id = event.target.getAttribute("data-id");
+            var currGoods=goods.find(function(i){
+                return i.id== id               
+            })
+            var currSelectedGoods=selectedGoods.find(function(i){
+                return i.id== id               
+            })
+            if(currSelectedGoods){
+                currSelectedGoods.amount++
+                console.log(selectedGoods)
+            }
+            else{
+                selectedGoods.push({id:currGoods.id,name:currGoods.name,amount:1})
+            }
+            //增加sessionstorage
+            sessionStorage.setItem("selectedGoods", JSON.stringify(selectedGoods))
+            console.log(sessionStorage)
+            render()
+            console.log(selectedGoodsBox)
+        })
+
+        //删除按钮点击事件
+        render()
+        var delBtnsBox=document.querySelectorAll("button")
+        console.log(delBtnsBox)
+
+        selectedGoodsBox.addEventListener("click",function(event){
+            let id = event.target.getAttribute("data-id");
+            console.log(id)
+            var currSelectedGoods=selectedGoods.find(function(i){
+                return i.id== id               
+            })
+            console.log(currSelectedGoods)
+            console.log(selectedGoodsBox)
+            console.log(selectedGoods)
+            if(currSelectedGoods.amount!=1){
+                currSelectedGoods.amount--
+                // console.log(selectedGoods)
+            }
+            else{                
+                var value={id:currSelectedGoods.id,name:currSelectedGoods.name,amount:1}
+                var indexOf=selectedGoods.indexOf(value)
+                selectedGoods.splice(indexOf,1)
+                // console.log(value)
+                // console.log(indexOf)
+                // console.log(selectedGoods)
+                
+            }
+            //增加sessionstorage
+            sessionStorage.setItem("selectedGoods", JSON.stringify(selectedGoods))
+            // console.log(sessionStorage)
+            render()
+            // console.log(selectedGoodsBox)
+        })
+        
+        //有storage则刷新selectedGoods购物车数据
+        var storageSelectedGoods=sessionStorage.getItem("selectedGoods")
+        if(storageSelectedGoods){
+            selectedGoods=JSON.parse(storageSelectedGoods)
+        }
+
+        //渲染函数
+        function render(){
+            var goodsDom =goods.map(function(i){
+                return `<div class="g">
+                            <div data-id="${i.id}">
+                                ${i.name}
+                            </div>
+                        </div>`
+            })                  
+
+            var selectedGoodsDom =selectedGoods.map(function(i){
+                return `<div class="g">
+                            <div>
+                                商品名：${i.name}
+                            </div>
+                            <div>
+                                数量：${i.amount}
+                            </div>
+                            <button data-id="${i.id}">
+                                数量-1
+                            </button>
+                                
+                            
+                            
+                        </div>`
+            })
+            //渲染
+            goodsBox.innerHTML=goodsDom.join("\n")
+            selectedGoodsBox.innerHTML=selectedGoodsDom.join("\n")
+        }
+        render()
+        
+    </script>
+</body>
+</html>
