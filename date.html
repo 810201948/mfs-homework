@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //"2017-03-05 10:03:08"
+        var datePast=new Date()
+        datePast.setFullYear(2017)
+        datePast.setMonth(2)
+        datePast.setDate(05)
+
+        datePast.setHours(10)
+        datePast.setMinutes(03)
+        datePast.setSeconds(08)
+        console.log(datePast)
+
+        //个位数加0
+        function twoDigtal(num){
+            var str=JSON.stringify(num)
+            if(str.length<2){
+                str="0"+str
+            }
+            return str
+        }
+        function format(date){
+            var year=date.getFullYear()
+            var month=date.getMonth()+1
+            var date=datePast.getDate()
+            var hour=datePast.getHours()
+            var min=datePast.getMinutes()
+            var sec=datePast.getSeconds()
+            return year+"-"+twoDigtal(month)+"-"+twoDigtal(date)+" "+twoDigtal(hour)+":"+twoDigtal(min)+":"+twoDigtal(sec)
+        }
+        // format(datePast)
+        console.log(format(datePast))
+    </script>
+</body>
+</html>
