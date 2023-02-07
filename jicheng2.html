@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        
+        function Animal(eat, sleep) {
+            this.eat = eat;
+            this.sleep = sleep;
+        }
+        Animal.prototype.getEat = function () {
+            return "吃：" + this.eat;
+        }
+
+        Animal.prototype.getSleep = function () {
+            return "睡：" + this.sleep;
+        }
+
+        function Dog(eat, sleep) {
+            // 调用父类构造函数
+            Animal.call(this, eat, sleep);
+            this.eat = eat;
+            this.sleep = sleep;
+            
+        }
+        Dog.prototype.getEat = function () {
+            return "狗吃：" + this.eat;
+        }
+
+        Dog.prototype.getSleep = function () {
+            return "狗睡：" + this.sleep;
+        }
+        
+        
+        
+
+        function Human(eat, sleep) {
+            Animal.call(this, eat, sleep);
+            this.eat = eat;
+            this.sleep = sleep;
+            
+        }
+        Human.prototype.getEat = function () {
+            return "人吃：" + this.eat;
+        }
+
+        Human.prototype.getSleep = function () {
+            return "人睡：" + this.sleep;
+        }
+
+        // 实现继承
+        Dog.prototype.__proto__ = Animal.prototype
+        Human.prototype.__proto__ = Animal.prototype
+
+        var dog1 = new Dog("meat", "huhu");
+        console.log(dog1.getEat())
+        console.log(dog1.getSleep())
+
+
+
+    </script>
+</body>
+
+</html>
