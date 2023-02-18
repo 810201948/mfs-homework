@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+</head>
+
+<body>
+  省份：<select name="region" id="region">
+    <option value="">--请选择--</option>
+  </select>
+  城市：<select name="city" id="city">
+    <option value="">--请选择--</option>
+  </select>
+  区县：<select name="county" id="county">
+    <option value="">--请选择--</option>
+  </select>
+  <script>
+    // var regions = []
+    var regionSel = document.getElementById('region')
+    var citySel = document.getElementById('city')
+    var countySel = document.getElementById('county')
+    $.ajax({
+      method: 'get',
+      url: '/getRegions',
+      success: function (res) {
+        // regions = res.data
+        res.data.forEach(item => {
+          createOption(regionSel, item)
+        });
+      }
+    })
+    function createOption(node, data) {
+      var option = document.createElement('option')
+      var html = `<option value="${data.name}" data-index="${data.code}">${data.name}</option>`
+      option.innerHTML = html
+      // console.log(option);
+      node.appendChild(option)
+    }
+    regionSel.onchange = function () {
+      //清空市、区信息，防止叠加
+      citySel.innerHTML="<option value=\"\">--请选择--</option>"
+      countySel.innerHTML="<option value=\"\">--请选择--</option>"
+      var regionIndex = regionSel.selectedIndex
+      $.ajax({
+        method: 'get',
+        url: '/getCity?regionIndex=' + regionIndex,
+        success: function (res) {
+          res.data.forEach(item => { createOption(citySel, item) })
+        }
+      })
+    }
+    citySel.onchange = function () {
+      countySel.innerHTML="<option value=\"\">--请选择--</option>"
+      var cityIndex = citySel.selectedIndex
+      $.ajax({
+        method: 'get',
+        url: 'getCounty?cityIndex=' + cityIndex,
+        success: function (res) {
+          res.data.forEach(item => { createOption(countySel, item) })
+        }
+      })
+    }
+  </script>
+</body>
+
+</html>
