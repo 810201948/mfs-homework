@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+      .valid{
+          display: none;
+      }
+      .valid.show{
+          display: block;
+      }
+  </style>
+  </head>
+  <body>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <form action="/signup">
+      <!-- input有变化就会调用usernameChange函数 -->
+      username:<input type="text" id="username" oninput="usernameChange()" pattern="^[a-zA-Z_]\w{5,17}$">
+      <div class="valid">用户名已存在</div>
+      <div>
+        密码:<input type="text" id="password" pattern="\w{6,18}"  oninput="passwordInput()">
+      </div>
+      <div>
+        确认密码:<input type="text" id="pwd-rpt" pattern="\w{6,18}" oninput="passwordRepeatInput()">
+      </div>
+      <input type="submit">
+      
+      
+    </form>
+    <script>
+      var input = document.getElementById("username")
+      var timer
+      function usernameChange(){
+        clearTimeout(timer)
+        timer = setTimeout(function(){
+          $.ajax({
+            url:"/usernameExist",
+            method:"post",
+            data:{
+              username:input.value
+            },
+            success:function(data){
+              console.log(data)
+              //exist:true 时，即mark==username时
+              if(data.exist){
+                $(".valid").addClass("show")
+              }else{
+                $(".valid").removeClass("show")
+              }
+            }
+          })
+        },1000);
+      }
+      var password;
+      function passwordInput(){
+          password = document.getElementById("password").value
+      }
+      function passwordRepeatInput(){
+          var input=document.getElementById("pwd-rpt")
+          if(password != input.value){
+              input.setCustomValidity("Password values do not match.")
+          }else{
+              input.setCustomValidity("")
+          }
+      }
+    </script>
+  </body>
+</html>
