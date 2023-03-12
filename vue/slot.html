@@ -1,0 +1,43 @@
+<!-- slot插入点 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js""></script>
+    <title>Document</title>
+    <style>
+        .fenge{
+            border-top: 5px solid red;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="test">
+        <container1>
+            <div slot="content1">----content1----</div>
+            <div slot="content2">++++content2++++</div>
+        </container1>        
+    </div>
+    
+    <script>
+        // template内只能有一个标签，不能有多个并列
+        Vue.component('container1',{
+            template:`
+            <div class="main">
+                <header>head</header>
+                <slot name="content1"></slot>
+                <div class="fenge"></div>
+                <slot name="content2"></slot>
+                <footer>foot</footer>
+            </div>
+            `
+        })
+        var test =new Vue({
+            el:"#test",
+            
+        })
+    </script>
+</body>
+</html>
