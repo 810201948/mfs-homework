@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js""></script>
+    <script src="https://cdn.bootcss.com/marked/0.3.6/marked.js"></script>
+    <!-- 引入marked的cdn -->
+    <title>markdown</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            background-color: rgb(201, 199, 199);
+        }
+        #app{
+            display: flex;
+            height: 100vh;
+        }
+        textarea{
+            width: 50%;
+            font-size: 20px;
+            padding: 30px;
+        }
+        .content{
+            width: 50%;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="app">
+        <textarea v-model="text" ></textarea>
+        <div class="content" v-html="content"></div>
+    </div>
+    
+    <script>
+       
+        // Vue.component('',{
+        //     template:`
+            
+        //     `
+        // })
+        var app =new Vue({
+            el:"#app",
+            data:{
+                text:""
+            },
+            // 使用计算属性把text文本实时转换成markdown格式
+            computed:{
+                content:function(){
+                    return marked(this.text)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
